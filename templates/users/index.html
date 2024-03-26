@@ -1,0 +1,58 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Seus estilos CSS -->
+    <link href="{% static 'users/css/styles.css' %}" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100"> <!-- Utilizando classes de alinhamento para centralizar -->
+        <div class="col-md-8"> <!-- Alterando para col-md-12 -->
+            <div class="card text-white">
+                <h5 class="card-header text-center">COIN CONTROL</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Acessar sua conta</h5>
+                    {% if request.GET.next %}
+                    <div class="alert alert-warning text-center" role="alert">
+                       "Para acessar essa pagina você precisa estar logado."
+                    </div>
+                    {% endif %}
+                    {% include "_alertas.html" %} 
+                    <form action="{% url 'users:login' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            {% render_field form.username id="username" class="form-control" placeholder="user.name"%}
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Senha</label>
+                            {% render_field form.password id="password" class="form-control" placeholder="sua senha"%}
+                        </div>
+                        <div class="row justify-content-center mt-3">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn-submit mb-2 col">Acessar</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn-submit mb-2 col">Cadastro</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+     <!-- Seus scripts JavaScript -->
+     <script src="{% static 'users/js/main.js' %}"></script>
+</body>
+</html>

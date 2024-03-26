@@ -1,0 +1,28 @@
+  /* Center the card vertically and horizontally */
+  body {
+    background-image: linear-gradient(to right, #6a12cc 50% , #2575fc );
+}
+
+/* Estilos para todos os botões de submit */
+.btn-submit {
+    background-color: transparent;
+    color: #fff; /* cor do texto */
+    border: 2px solid #fff; /* borda branca */
+    border-radius: 5px; /* borda arredondada */
+    padding: 10px 20px; /* espaçamento interno */
+    cursor: pointer; /* cursor do mouse */
+    transition: background-color 0.3s, color 0.3s; /* transição suave */
+}
+
+/* Estilos de hover para botões de submit */
+.btn-submit:hover {
+    background-color: #fff; /* cor de fundo ao passar o mouse */
+    color: #000; /* cor do texto ao passar o mouse */
+}
+.card{
+    background-color: #332d2d;
+    -webkit-box-shadow: 7px 6px 16px 0px rgba(0,0,0,0.33);
+    -moz-box-shadow: 7px 6px 16px 0px rgba(0,0,0,0.33);
+    box-shadow: 7px 6px 16px 0px rgba(0,0,0,0.33);
+}
+

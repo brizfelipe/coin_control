@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap_icons %}
+
+{% block title%}
+Bank | Coin control
+{% endblock %}
+
+{% block content %}
+<h2 class="text-muted text-center" style="letter-spacing: 5px;">MEUS LANÇAMENTOS</h2>
+
+{% if not banks_existis %}
+<div class="row">
+    {% include "outflows/_form_outflows.html" %}
+</div>
+<!-- Lista de bancos cadastrados -->
+<div class="row" id="empty-list">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        No momento nenhuma saida foi lançada.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+{% else %}
+
+{% endif %}
+<script src='{% static "bank/main.js" %}' language="JavaScript" type="text/javascript"></script>
+{% endblock %}

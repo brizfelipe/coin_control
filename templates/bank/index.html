@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap_icons %}
+
+{% block title%}
+Bank | Coin control
+{% endblock %}
+
+{% block content %}
+
+<h2 class="text-muted text-center" style="letter-spacing: 5px;">MEUS BANCOS</h2>
+
+{% if not banks_existis %}
+<div class="row">
+    {% include "bank/_form_create_bank.html" %}
+</div>
+<!-- Lista de bancos cadastrados -->
+<div class="row" id="empty-list">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        No momento nenhum banco foi cadastrado.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+{% else %}
+
+<div class="row" style="margin-bottom: 1rem">
+    <div class="col-md-3">
+        <input type="text" class="form-control" id="search-banks" placeholder="Pesquisar">
+    </div>
+
+    <div class="col">
+        <button type="button" class="btn-base" data-bs-toggle="modal" data-bs-target="#modal-create-bank"
+            style="float: right">
+            {% bs_icon 'clipboard-plus-fill' size='1.5em' %}&nbsp;Cadastrar novo banco
+        </button>
+    </div>
+
+
+</div>
+
+<hr>
+
+<div id="my-banks-table" class="row row-cols-1 row-cols-md-2 g-4">
+</div>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-create-bank">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Meu novo banco</h5>
+                <button id="close-modal-create-bank" type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {% include "bank/_form_create_bank.html" %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-delete-bank">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="delete-bank-title" class="modal-title">Tem certeza?</h5>
+                <button id="close-modal-delete-bank" type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning" role="alert">
+                    <strong>Atenção:</strong> Ao clicar em "CONTINUAR", você irá deletar permanentemente o banco
+                    cadastrado.
+                    Esta ação também excluirá todos os lançamentos associados a este banco.
+                    Tem certeza de que deseja continuar?
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">DESISTIR</button>
+                <button id="delete-bank-button" type="button" class="btn btn-outline-secondary">CONTINUAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-update-bank">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Configurações do banco</h5>
+                <button id="close-modal-update-bank" type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-muted">Editar informações cadastradas do banco.</h5>
+                <form style="margin-top: 1rem;" id="update_bank_forms">
+                    {% csrf_token %}
+
+                    <div id="update-bank-alert-danger" class="alert alert-danger" role="alert" style="display: none;">
+                    </div>
+                    <div id="update-bank-alert-primary" class="alert alert-primary" role="alert" style="display: none;">
+                    </div>
+                    <div class="row" style="margin-bottom: 1rem;">
+                        <label for="update-name-bank">ID do banco</label>
+                        <div>
+                            <input type="text" class="form-control" id="update-id-bank">
+                        </div>
+                        <label for="update-name-bank">Nome do banco</label>
+                        <div>
+                            <input type="text" class="form-control" id="update-name-bank">
+                        </div>
+                        <label for="update-description-bank">Descrição</label>
+                        <div>
+                            <input type="text" class="form-control" id="update-description-bank">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CANCELAR</button>
+                            <button id="udpate-bank-button" type="button" class="btn btn-primary">SALVAR</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+        <script src='{% static "bank/main.js" %}' language="JavaScript" type="text/javascript"></script>
+        {% endblock %}

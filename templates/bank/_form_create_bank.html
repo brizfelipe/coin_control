@@ -1,0 +1,24 @@
+{% load static %}
+
+<script src='{% static "bank/create_bank.js" %}' language="JavaScript" type="text/javascript"></script>
+
+<form id="create_bank_forms">
+    {% csrf_token %}
+
+    <div id="create-bank-alert-danger" class="alert alert-danger" role="alert" style="display: none;"></div>
+    <div id="create-bank-alert-primary" class="alert alert-primary" role="alert" style="display: none;"></div>
+      
+    <div class="row mb-3">
+        <div class="col">
+            <input type="text" class="form-control" id="name-bank" placeholder="Nome do banco">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" id="description-bank" placeholder="Descrição sobre o banco">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Cadastrar novo banco</button>
+        </div>
+    </div>
+</form>
