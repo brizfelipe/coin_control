@@ -1,0 +1,18 @@
+{% extends "users/base.html" %}
+{% block content %}
+<div class="col-md-8"> 
+    <div class="card text-white">
+        <h5 class="card-header text-center">COIN CONTROL</h5>
+        <div class="card-body">
+            <h5 class="card-title">Acessar sua conta</h5>
+            {% if request.GET.next %}
+            <div class="alert alert-warning text-center" role="alert">
+               "Para acessar essa pagina você precisa estar logado."
+            </div>
+            {% endif %}
+            
+            {% include "users/forms/login.html" %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,redirect
-from .forms import LoginForm
+from .forms import LoginForm,RegisterForm
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 
@@ -22,8 +22,23 @@ def login(request):
                 messages.error(request, 'Cuidado, Parece que seu usuário ou senha está inválido, verifique e tente novamente.')
         else:
             messages.error(request, 'Ops! Parece que você ainda não está cadastrado')
-    return render(request,'users/index.html',context)
+    return render(request,'users/login.html',context)
 
 def logout(request):
     auth.logout(request)
     return redirect('users:login')
+
+from django.shortcuts import render, redirect
+from .forms import RegisterForm
+
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            return redirect('users:login')
+    else:
+        form = RegisterForm()
+    return render(request, 'users/register.html', {'form': form})

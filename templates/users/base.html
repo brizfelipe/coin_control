@@ -1,0 +1,27 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Seus estilos CSS -->
+    <link href="{% static 'users/css/styles.css' %}" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100"> <!-- Utilizando classes de alinhamento para centralizar -->
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+     <!-- Seus scripts JavaScript -->
+     <script src="{% static 'users/js/main.js' %}"></script>
+</body>
+</html>
