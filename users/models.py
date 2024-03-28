@@ -19,3 +19,11 @@ class Dependent(models.Model):
 
     def __str__(self):
         return  f"{self.user.username}{self.name}"
+
+
+class Perfil(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    foto_perfil = models.ImageField(upload_to='profile_images', default='profile_images/default.png')
+
+    def __str__(self):
+        return self.user.username

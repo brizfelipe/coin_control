@@ -1,9 +1,9 @@
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,redirect
 from .forms import LoginForm,RegisterForm
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
+from .models import Perfil
+from django.conf import settings
 
 # Create your views here.
 def login(request):
@@ -28,8 +28,6 @@ def logout(request):
     auth.logout(request)
     return redirect('users:login')
 
-from django.shortcuts import render, redirect
-from .forms import RegisterForm
 
 def register(request):
     if request.method == 'POST':
@@ -42,3 +40,14 @@ def register(request):
     else:
         form = RegisterForm()
     return render(request, 'users/register.html', {'form': form})
+
+
+def perfil(request):
+    context = {}
+    # Obtenha o perfil do usuário logado
+    perfil_usuario = Perfil.objects.get(user=request.user)
+    context['perfil'] = perfil_usuario
+    # Adicione a URL da imagem de perfil ao contexto
+    context['foto_perfil'] = perfil_usuario.foto_perfil.url
+    return render(request, 'users/perfil.html', context)
+

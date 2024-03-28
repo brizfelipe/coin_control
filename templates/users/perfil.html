@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2 class="text-muted text-center" style="letter-spacing: 5px;">PERFIL</h2>
+<hr>
+<div id="profile-table" class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col-md-6">
+    <div class="card shadow" style="width: 25rem;">
+      <div class="card-header text-white text-center" style="background-color: #6a12cc;">
+        <strong> Seus dados </strong> (Principal)
+      </div>
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col">
+            <label for="username" class="form-label text-muted">Nome de usuário:</label>
+            <p id="username" class="form-control-static">{{ user.username }}</p>
+          </div>
+          <div class="col">
+            <label for="email" class="form-label text-muted">Email:</label>
+            <p id="email" class="form-control-static">{{ user.email }}</p>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <label for="first_name" class="form-label text-muted">Primeiro nome:</label>
+            <p id="first_name" class="form-control-static">{{ user.first_name }}</p>
+          </div>
+          <div class="col">
+            <label for="last_name" class="form-label text-muted">Sobrenome:</label>
+            <p id="last_name" class="form-control-static">{{ user.last_name }}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row justify-content-center">
+
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target="#editarPerfilModal">
+              Editar dados <i class="bi bi-pencil-square"></i>
+            </button>
+            <button type="button" class="btn btn-outline-success">
+              Add parente <i class="bi bi-people-fill"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <div class="card-footer bg-light text-muted text-center">
+        <p>Desde: {{ user.date_joined|date:"d/m/Y" }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <form>
+      <!-- Aqui você pode adicionar seus campos de formulário -->
+    </form>
+  </div>
+</div>
+
+{% include "users/modal/edit_profile.html" %}
+
+<script src='{% static "users/js/perfil.js" %}' language="JavaScript" type="text/javascript"></script>
+{% endblock %}

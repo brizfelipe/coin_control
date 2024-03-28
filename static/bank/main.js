@@ -23,7 +23,7 @@ function insert_banks(response) {
         console.log(row.name)
         var new_row = `
         <div id="bank-id-${row.id}" class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm position-relative">
+            <div class="card h-100 border-0 shadow position-relative">
                 <div class="btn-group position-absolute top-0 end-0 mt-2 me-2" role="group" aria-label="Card Actions">
                     <button id="delete-bank-id-${row.id}:${row.name}" type="button" data-bs-toggle="modal" data-bs-target="#modal-delete-bank" class="btn btn-outline-danger" aria-label="Delete">
                         <i class="bi bi-trash-fill"></i>

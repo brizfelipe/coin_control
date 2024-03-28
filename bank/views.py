@@ -42,7 +42,7 @@ def ajax_create_bank(request):
         return JsonResponse({'message': 'Método inválido', 'status': 400})
 
 def ajax_delete_bank(request,id):
-    status = database.delete_bank_by_user_id(bank_id=id)
+    status = database.delete_bank_by_bank_id(bank_id=id)
     if status:
         return JsonResponse({'message': 'Banco deletado com sucesso.', 'status': 200})
     else:
